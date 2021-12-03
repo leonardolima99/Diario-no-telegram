@@ -20,14 +20,14 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 bot.on('text', ctx => {
   console.log(
     ctx.message.text,
-    new Date(ctx.message.date * 1000).toLocaleString()
+    new Date(ctx.message.date * 1000).toLocaleString('pt-BR')
   )
 
   client
     .create({
       id: ctx.message.message_id,
       sonho: ctx.message.text,
-      data: new Date(ctx.message.date * 1000).toLocaleString()
+      data: new Date(ctx.message.date * 1000).toLocaleString('pt-BR')
     })
     .then(
       function (res) {
