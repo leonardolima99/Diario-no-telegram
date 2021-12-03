@@ -17,13 +17,16 @@ const client = sheetdb(config)
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.on('text', ctx => {
-  console.log(ctx.message.text, new Date(ctx.message.date).toLocaleString())
+  console.log(
+    ctx.message.text,
+    new Date(ctx.message.date * 1000).toLocaleString()
+  )
 
   client
     .create({
       id: ctx.message.message_id,
       sonho: ctx.message.text,
-      data: new Date(ctx.message.date).toLocaleString()
+      data: new Date(ctx.message.date * 1000).toLocaleString()
     })
     .then(
       function (res) {
