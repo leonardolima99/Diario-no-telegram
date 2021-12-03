@@ -22,7 +22,8 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "sheetdb-node": "^0.0.12",
-    "telegraf": "^3.34.0"
+    "telegraf": "^3.34.0",
+    "supervisor": "^0.12.0"
   },
   "devDependencies": {
     "eslint": "^6.7.1",
@@ -30,7 +31,6 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "supervisor": "^0.12.0"
+    "eslint-plugin-standard": "^4.0.0"
   }
 }
