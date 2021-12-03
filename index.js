@@ -1,19 +1,7 @@
-const Telegraf = require('telegraf')
+const { Telegraf } = require('telegraf')
 const sheetdb = require('sheetdb-node')
-const express = require('express')
-const expressApp = express()
 
-require('dotenv').config({
-  path: process.env.NODE_ENV === 'production' ? null : '.env'
-})
-
-const port = process.env.PORT || 3000
-expressApp.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-expressApp.listen(port, () => {
-  console.log(`Listening on port ${port}`)
-})
+require('dotenv').config()
 
 const config = {
   address: process.env.ADDRESS,
@@ -22,7 +10,12 @@ const config = {
 }
 const client = sheetdb(config)
 
+/* const PORT = process.env.PORT || 8443
+const URL = process.env.URL || 'https://diario2-bot.herokuapp.com/' */
+
 const bot = new Telegraf(process.env.BOT_TOKEN)
+
+/* bot.use(Telegraf.log()) */
 
 bot.on('text', ctx => {
   console.log(
@@ -47,3 +40,7 @@ bot.on('text', ctx => {
 })
 
 bot.launch()
+
+// Enable graceful stop
+process.once('SIGINT', () => bot.stop('SIGINT'))
+process.once('SIGTERM', () => bot.stop('SIGTERM'))

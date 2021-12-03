@@ -8,14 +8,10 @@
   },
   "main": "index.js",
   "scripts": {
-    "dev": "supervisor -x telegraf index.js",
-    "start": "supervisor -x telegraf index.js",
-    "now-start": "telegraf -d ${NOW_URL}",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
     "lint": "eslint .",
     "test": "npm run lint"
-  },
-  "engines": {
-    "node": ">=8.5.0"
   },
   "author": "leonardolima99 <leonardo1230987@gmail.com>",
   "license": "MIT",
@@ -23,8 +19,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "sheetdb-node": "^0.0.12",
-    "supervisor": "^0.12.0",
-    "telegraf": "^3.34.0"
+    "telegraf": "^4.4.2"
   },
   "devDependencies": {
     "eslint": "^6.7.1",
@@ -32,6 +27,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^2.0.15"
   }
 }
