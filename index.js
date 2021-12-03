@@ -1,10 +1,18 @@
 const Telegraf = require('telegraf')
 const sheetdb = require('sheetdb-node')
-/* const Extra = require('telegraf/extra')
-const Markup = require('telegraf/markup') */
+const express = require('express')
+const expressApp = express()
 
 require('dotenv').config({
   path: process.env.NODE_ENV === 'production' ? null : '.env'
+})
+
+const port = process.env.PORT || 3000
+expressApp.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+expressApp.listen(port, () => {
+  console.log(`Listening on port ${port}`)
 })
 
 const config = {
