@@ -31,6 +31,20 @@ bot.on('text', ctx => {
   )
 })
 
+bot.on('edited_message', ctx => {
+  if (!ctx.editedMessage.text) return console.log('Não é uma edição de texto.')
+  console.log(ctx.editedMessage)
+
+  client
+    .update('id', ctx.editedMessage.message_id, {
+      sonho: ctx.editedMessage.text
+    })
+    .then(
+      res => console.log(res),
+      err => console.log(err)
+    )
+})
+
 bot.launch()
 
 /* ------- Apenas para o Heroku ------- */
@@ -38,7 +52,7 @@ const app = express()
 app.get('/', (req, res) => res.send('Hello World!'))
 
 app.listen(PORT, () => {
-  console.log(`Rodando na porta ${PORT}!\nSó pro heroku não reclamar...`)
+  console.log(`Rodando na porta ${PORT}!\nSó pro servidor não reclamar...`)
 })
 /* ------------------------------------ */
 
