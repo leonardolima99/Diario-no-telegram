@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/leonardolima99/diario-no-telegram.svg?branch=master)](https://travis-ci.org/leonardolima99/diario-no-telegram)
-
 # Diario no Telegram
 
 ## Uso
