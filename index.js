@@ -31,7 +31,9 @@ bot.on('text', ctx => {
     .create({
       id: ctx.message.message_id,
       sonho: ctx.message.text,
-      data: ctx.message.date * 1000
+      data: new Date(ctx.message.date * 1000).toLocaleString('pt-BR', {
+        timeZone: 'America/Campo_Grande'
+      })
     })
     .then(
       function (res) {
