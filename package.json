@@ -1,9 +1,9 @@
 {
-  "name": "diario2_bot",
-  "version": "0.0.0",
+  "name": "diario-no-telegram",
+  "version": "0.0.1",
   "description": "Bot para registrar e organizar diários.",
   "repository": {
-    "url": "leonardolima99/diario2_bot",
+    "url": "leonardolima99/diario-no-telegram",
     "type": "git"
   },
   "main": "index.js",

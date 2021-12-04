@@ -33,12 +33,14 @@ bot.on('text', ctx => {
 
 bot.launch()
 
+/* ------- Apenas para o Heroku ------- */
 const app = express()
 app.get('/', (req, res) => res.send('Hello World!'))
 
 app.listen(PORT, () => {
   console.log(`Rodando na porta ${PORT}!\nSó pro heroku não reclamar...`)
 })
+/* ------------------------------------ */
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
