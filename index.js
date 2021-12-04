@@ -12,37 +12,23 @@ const config = {
 const client = sheetdb(config)
 
 const PORT = process.env.PORT || 3000
-/* const URL = process.env.URL || 'https://diario2-bot.herokuapp.com/' */
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
-/* bot.use(Telegraf.log()) */
-
 bot.on('text', ctx => {
-  console.log(
-    ctx.message.date * 1000,
-    ctx.message.text,
-    new Date(ctx.message.date * 1000).toLocaleString('pt-BR', {
+  const dataDream = {
+    id: ctx.message.message_id,
+    sonho: ctx.message.text,
+    data: new Date(ctx.message.date * 1000).toLocaleString('pt-BR', {
       timeZone: 'America/Campo_Grande'
     })
-  )
+  }
+  console.log(dataDream)
 
-  client
-    .create({
-      id: ctx.message.message_id,
-      sonho: ctx.message.text,
-      data: new Date(ctx.message.date * 1000).toLocaleString('pt-BR', {
-        timeZone: 'America/Campo_Grande'
-      })
-    })
-    .then(
-      function (res) {
-        console.log(res)
-      },
-      function (err) {
-        console.log(err)
-      }
-    )
+  client.create(dataDream).then(
+    res => console.log(res),
+    err => console.log(err)
+  )
 })
 
 bot.launch()
