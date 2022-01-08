@@ -15,7 +15,34 @@ const PORT = process.env.PORT || 3000
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
-bot.on('text', ctx => {
+bot.command('editDate', ctx => {
+  const [, day, month, hour, minutes, ...text] = ctx.message.text.split(' ')
+  const newDate = new Date()
+  const date = new Date(
+    `${month}-${day}-${newDate.getFullYear()} ${hour}:${minutes}`
+  )
+
+  if (date instanceof Date && isNaN(date)) {
+    ctx.reply(
+      'Data inválida, siga este modelo:\n/editDate dia mes hora minutos<espaço>\nTexto'
+    )
+    return 0
+  }
+
+  const dataDream = {
+    id: ctx.message.message_id,
+    sonho: text.join(' '),
+    data: new Date(date).toLocaleString('pt-BR', {
+      timeZone: 'America/Campo_Grande'
+    })
+  }
+
+  client.create(dataDream).then(
+    res => ctx.reply('Sonho com data editada registrado.'),
+    err => console.log(err)
+  )
+})
+bot.on('message', ctx => {
   const dataDream = {
     id: ctx.message.message_id,
     sonho: ctx.message.text,
@@ -23,7 +50,6 @@ bot.on('text', ctx => {
       timeZone: 'America/Campo_Grande'
     })
   }
-  console.log(dataDream)
 
   client.create(dataDream).then(
     res => console.log(res),
@@ -32,8 +58,7 @@ bot.on('text', ctx => {
 })
 
 bot.on('edited_message', ctx => {
-  if (!ctx.editedMessage.text) return console.log('Não é uma edição de texto.')
-  console.log(ctx.editedMessage)
+  if (!ctx.editedMessage.text) return
 
   client
     .update('id', ctx.editedMessage.message_id, {
