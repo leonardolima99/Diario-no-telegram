@@ -32,7 +32,7 @@ bot.command('editDate', ctx => {
   const dataDream = {
     id: ctx.message.message_id,
     sonho: text.join(' '),
-    data: new Date(date).toLocaleString('pt-BR', {
+    data: date.toLocaleString('pt-BR', {
       timeZone: 'America/Campo_Grande'
     })
   }
