@@ -22,6 +22,8 @@ bot.command('editDate', ctx => {
     `${month}-${day}-${newDate.getFullYear()} ${hour}:${minutes}`
   )
 
+  /* date.setMinutes(date.getMinutes + ) */
+
   if (date instanceof Date && isNaN(date)) {
     ctx.reply(
       'Data inválida, siga este modelo:\n/editDate dia mes hora minutos<espaço>\nTexto'
@@ -32,9 +34,7 @@ bot.command('editDate', ctx => {
   const dataDream = {
     id: ctx.message.message_id,
     sonho: text.join(' '),
-    data: date.toLocaleString('pt-BR', {
-      timeZone: 'America/Campo_Grande'
-    })
+    data: date.toLocaleString()
   }
 
   client.create(dataDream).then(
