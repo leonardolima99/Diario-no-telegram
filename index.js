@@ -66,7 +66,7 @@ bot.on('message', ctx => {
   }
 
   console.log('User: ' + ctx.message.from.id)
-  console.log('Date: ' + date)
+  console.log('Date: ' + date, typeof date)
   client.create(dataDream).then(
     res => console.log(res),
     err => console.log(err)
