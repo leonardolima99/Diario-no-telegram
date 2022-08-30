@@ -64,6 +64,7 @@ bot.on('message', ctx => {
   }
 
   console.log('User: ' + ctx.message.from.id)
+  console.log('Date: ' + dataDream.data)
   client.create(dataDream).then(
     res => console.log(res),
     err => console.log(err)
