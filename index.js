@@ -55,16 +55,16 @@ bot.on('message', ctx => {
     return 0
   }
 
-  const date = new Date(ctx.message.date * 1000).toLocaleString('pt-BR')
-
   const dataDream = {
     id: ctx.message.message_id,
     sonho: ctx.message.text,
-    data: date
+    data: new Date(ctx.message.date * 1000).toLocaleString('pt-BR', {
+      timeZone: 'America/Campo_Grande'
+    })
   }
 
   console.log('User: ' + ctx.message.from.id)
-  console.log('Date: ' + date, typeof date)
+  
   client.create(dataDream).then(
     res => console.log(res),
     err => console.log(err)
