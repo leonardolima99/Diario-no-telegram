@@ -55,7 +55,7 @@ bot.on('message', ctx => {
     return 0
   }
 
-  const date = new Date(ctx.message.date * 1000).toLocaleString()
+  const date = new Date(ctx.message.date * 1000).toLocaleString('pt-BR')
 
   const dataDream = {
     id: ctx.message.message_id,
