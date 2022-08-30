@@ -18,7 +18,7 @@ const USER_ID = process.env.USER_ID
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.command('editDate', ctx => {
-  if (ctx.message.from.id === USER_ID) {
+  if (ctx.message.from.id != USER_ID) {
     ctx.reply('Você não é o usuário deste bot.\nPor favor, pare de tentar usá-lo.')
     return 0
   }
@@ -50,7 +50,7 @@ bot.command('editDate', ctx => {
   )
 })
 bot.on('message', ctx => {
-  if (ctx.message.from.id === USER_ID) {
+  if (ctx.message.from.id != USER_ID) {
     ctx.reply('Você não é o usuário deste bot.\nPor favor, pare de tentar usá-lo.')
     return 0
   }
@@ -71,7 +71,7 @@ bot.on('message', ctx => {
 })
 
 bot.on('edited_message', ctx => {
-  if (ctx.message.from.id === USER_ID) {
+  if (ctx.message.from.id != USER_ID) {
     ctx.reply('Você não é o usuário deste bot.\nPor favor, pare de tentar usá-lo.')
     return 0
   }
