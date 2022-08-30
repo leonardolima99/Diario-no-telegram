@@ -13,9 +13,16 @@ const client = sheetdb(config)
 
 const PORT = process.env.PORT || 3000
 
+const USER_ID = process.env.USER_ID
+
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.command('editDate', ctx => {
+  if (ctx.message.from.id === USER_ID) {
+    ctx.reply('Você não é o usuário deste bot.\nPor favor, pare de tentar usá-lo.')
+    return 0
+  }
+  
   const [, day, month, hour, minutes, ...text] = ctx.message.text.split(' ')
   const newDate = new Date()
   const date = new Date(
@@ -43,6 +50,11 @@ bot.command('editDate', ctx => {
   )
 })
 bot.on('message', ctx => {
+  if (ctx.message.from.id === USER_ID) {
+    ctx.reply('Você não é o usuário deste bot.\nPor favor, pare de tentar usá-lo.')
+    return 0
+  }
+
   const dataDream = {
     id: ctx.message.message_id,
     sonho: ctx.message.text,
@@ -59,6 +71,11 @@ bot.on('message', ctx => {
 })
 
 bot.on('edited_message', ctx => {
+  if (ctx.message.from.id === USER_ID) {
+    ctx.reply('Você não é o usuário deste bot.\nPor favor, pare de tentar usá-lo.')
+    return 0
+  }
+  
   if (!ctx.editedMessage.text) return
 
   client
