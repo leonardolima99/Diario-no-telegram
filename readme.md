@@ -7,3 +7,5 @@
 - Crie uma conta no [sheetdb.io](https://sheetdb.io/), adicione uma planilha e termine o .env
 - Rode um `yarn` ou `npm install` para instalar as dependências
 - Rode `yarn dev` ou `npm run dev`
+
+-> setWebHook https://api.telegram.org/bot{my_bot_token}/setWebhook?url={my_bot_url}
