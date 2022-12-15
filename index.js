@@ -18,7 +18,7 @@ const USER_ID = process.env.USER_ID
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.command('editDate', ctx => {
-  if (ctx.editedMessage.from.id !== USER_ID) {
+  if (ctx.editedMessage.from.id !== Number(USER_ID)) {
     ctx.reply(
       'Você não é o usuário deste bot.\nPor favor, pare de tentar usá-lo.'
     )
@@ -32,7 +32,7 @@ bot.command('editDate', ctx => {
     `${month}-${day}-${newDate.getFullYear()} ${hour}:${minutes}`
   )
 
-  /* date.setMinutes(date.getMinutes + ) */
+  // date.setMinutes(date.getMinutes + )
 
   if (date instanceof Date && isNaN(date)) {
     ctx.reply(
@@ -52,8 +52,10 @@ bot.command('editDate', ctx => {
     err => console.log(err)
   )
 })
+
 bot.on('message', ctx => {
-  if (ctx.message.from.id !== USER_ID) {
+  console.log(ctx.message.from.id, Number(USER_ID))
+  if (ctx.message.from.id !== Number(USER_ID)) {
     ctx.reply(
       'Você não é o usuário deste bot.\nPor favor, pare de tentar usá-lo.'
     )
@@ -75,9 +77,8 @@ bot.on('message', ctx => {
     err => console.log(err)
   )
 })
-
 bot.on('edited_message', ctx => {
-  if (ctx.editedMessage.from.id !== USER_ID) {
+  if (ctx.editedMessage.from.id !== Number(USER_ID)) {
     ctx.reply(
       'Você não é o usuário deste bot.\nPor favor, pare de tentar usá-lo.'
     )
