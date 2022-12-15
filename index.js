@@ -99,15 +99,16 @@ bot.on('edited_message', ctx => {
 
 bot.launch()
 
-/* ------- Apenas para o Heroku ------- */
+/* ------- Apenas para o servidor ------- */
 const app = express()
 app.get('/', (req, res) => res.send('Hello World!'))
+app.post('/webhook', (req, res) => res.send('WebHook is handled!'))
 
 app.listen(PORT, () => {
   console.log(`Rodando na porta ${PORT}!\nSó pro servidor não reclamar...`)
 })
+module.exports = app
 /* ------------------------------------ */
-
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))
